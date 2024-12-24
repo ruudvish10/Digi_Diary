@@ -1,9 +1,0 @@
-User 1:
-
-UN: Rvn@utd
-PWD: test_user@123
-
-User 2:
-
-UN: Cr7@utd
-PWD: ManReal@7
