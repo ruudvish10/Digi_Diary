@@ -1,4 +1,0 @@
-Django Admin Account:
-
-UN: ll_admin
-PWD: djangoadmin
