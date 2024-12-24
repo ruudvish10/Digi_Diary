@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "learning_logs/base.html" %}
 {% load django_bootstrap5 %}
 
@@ -16,4 +17,24 @@
     </form>
 
 {% endblock content %}
+=======
+{% extends "learning_logs/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h2>Register your account.</h2>
+{% endblock page_header %}
+    
+{% block content %}
+    
+    <form action="{% url 'accounts:register' %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <!-- {{form.as_div}} -->
+        {% bootstrap_button button_type="submit" content="Register" %}
+        <!-- <button name="submit">Register</button> -->
+    </form>
+
+{% endblock content %}
+>>>>>>> e6b84dd (Commit#1 - Pushing project to Github)
     
