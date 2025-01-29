@@ -8,6 +8,7 @@
         "endcomment",
         "endfor",
         "nbsp",
+        "pycache",
         "raquo"
     ]
 }
