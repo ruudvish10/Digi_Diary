@@ -1,7 +1,5 @@
 accounts/Test Users Account Details.txt
-learning_logs/Admin pwd for site.txt
-accounts/__pycache__/__init__.cpython-313.pyc
-accounts/migrations/__pycache__/__init__.cpython-313.pyc
-learning_logs/__pycache__/__init__.cpython-313.pyc
-learning_logs/migrations/__pycache__/__init__.cpython-313.pyc
-ll_project/__pycache__/__init__.cpython-313.pyc
+digi_diaries/Admin pwd for site.txt
+__pycache__/
+*.pyc
+.vscode/settings.json
