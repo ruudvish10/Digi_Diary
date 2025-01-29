@@ -1,6 +1,5 @@
 accounts/Test Users Account Details.txt
 digi_diaries/Admin pwd for site.txt
-accounts/__pycache__/
-digi_diaries/__pycache__/
-ll_project/__pycache__/
+__pycache__/
+*.pyc
 .vscode/settings.json
