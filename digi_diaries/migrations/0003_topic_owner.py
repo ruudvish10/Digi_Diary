@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('learning_logs', '0002_entry'),
+        ('digi_diaries', '0002_entry'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

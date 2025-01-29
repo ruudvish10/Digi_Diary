@@ -1,0 +1,82 @@
+
+{% extends 'digi_diaries/base.html' %}
+{% block page_header %}
+<div class="d-flex justify-content-between align-items-center">
+  <h1>{{ topic.content|safe }}</h1>
+  <div class="d-flex gap-3">
+    <a href="{% url 'digi_diaries:add_sub_topic' topic.id %}" class="btn btn-outline-secondary btn-sm">Add Sub Topic</a>
+    <button type="button" id="edit-button" class="btn btn-outline-secondary btn-sm" style="text-decoration: none;">Edit Sub Topic</button>
+    <button type="button" id="delete-button" class="btn btn-outline-secondary btn-sm">Delete Sub Topic</button>
+  </div>
+</div>
+{% endblock page_header %}
+
+{% block content %}
+<form method="POST" id="delete-form" action="{% url 'digi_diaries:delete_sub_topic' %}">
+  {% csrf_token %}
+  <table class="table">
+    <thead>
+      <tr class="d-flex align-items-center">
+        <th style="width: 9%;">Select</th>
+        <th>Sub Topic</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for entry in entries  %}
+        <tr class="d-flex align-items-center">
+          <td class="d-flex align-items-center" style="width: 5%;">
+            <input type="checkbox" name="selected_entries" value="{{ entry.id }}">
+          </td>
+          <td>
+            <a href="{% url 'digi_diaries:edit_sub_topic' entry.id %}" style="text-decoration: none;" class="text-dark">{{ entry.content|safe }}</a>
+          </td>
+        </tr>   
+        {% empty %}
+        <p>There are no entries for this topic yet.</p>
+      {% endfor %}
+    </tbody>
+  </table>
+</form>
+
+
+<script>
+  // JavaScript for handling delete action (delete entry)
+  document.addEventListener("DOMContentLoaded", function () {
+      const deleteButton = document.getElementById("delete-button");
+
+      deleteButton.addEventListener("click", function () {
+          const checkboxes = document.querySelectorAll('input[name="selected_entries"]:checked');
+          if (checkboxes.length > 0) {
+              const confirmDelete = confirm("Are you sure you want to delete the selected sub topics?");
+              if (confirmDelete) {
+                  document.getElementById("delete-form").submit();
+              }
+          } else {
+              alert("Please select at least one sub topic to delete.");
+          }
+      });
+  });
+
+  // JavaScript for handling edit action (edit entry)
+  document.addEventListener("DOMContentLoaded", function () {
+      const editButton = document.getElementById("edit-button");
+
+      editButton.addEventListener("click", function () {
+          const checkboxes = document.querySelectorAll('input[name="selected_entries"]:checked');
+          if (checkboxes.length === 1) {
+              const topicId = checkboxes[0].value;
+              const editUrl = "{% url 'digi_diaries:edit_sub_topic' 0 %}".replace("0", topicId);
+              window.location.href = editUrl;
+          } else if (checkboxes.length === 0) {
+              alert("Please select one sub topic to edit.");
+          } else {
+              alert("You can only edit one sub topic at a time. Please select only one.");
+          }
+      });
+  });
+</script>
+
+{% endblock content %}
+  
+  

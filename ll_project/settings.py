@@ -11,10 +11,44 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#Static File Paths
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "staticfiles",]
+STATIC_ROOT = BASE_DIR /'static'
+
+#Media Upload Paths
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+
+#CKEditor Upload Path
+CKEDITOR_UPLOAD_PATH = "uploads/" 
+
+#CKEditor Configs
+CKEDITOR_CONFIGS = {
+    'default': {
+        #Toolbar Settings
+        'toolbar': [
+            ['Font', 'FontSize', 'Format' ,'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'],  # Added 'RemoveFormat' here
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Image', 'Table'],
+            ['Source', 'Maximize']
+        ],
+        #Look and Feel Settings
+        'height': 300,
+        'width': 'auto',
+
+        #Font Settings
+        'font_names': 'Arial;Calibri;Courier New;Georgia;Tahoma;Verdana;Comic Sans MS;  Times New Roman',
+        'fontSize_sizes': '8px;10px;12px;14px;16px;18px;24px;36px;48px;72px',
+        
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -32,11 +66,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # My apps
-    'learning_logs',                            # The main app
+    'digi_diaries',                            # The main app
     'accounts',                                 # User authentication app
     
     # Third party apps
     'django_bootstrap5',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # Default Django Apps
     'django.contrib.admin',
@@ -113,7 +149,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -131,6 +167,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #My settings
-LOGIN_REDIRECT_URL = 'learning_logs:index'
-LOGOUT_REDIRECT_URL = 'learning_logs:index'
+LOGIN_REDIRECT_URL = 'digi_diaries:index'
+LOGOUT_REDIRECT_URL = 'digi_diaries:index'
 LOGIN_URL = 'accounts:login'

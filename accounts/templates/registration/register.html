@@ -1,4 +1,4 @@
-{% extends "learning_logs/base.html" %}
+{% extends "digi_diaries/base.html" %}
 {% load django_bootstrap5 %}
 
 {% block page_header %}
@@ -6,13 +6,13 @@
 {% endblock page_header %}
     
 {% block content %}
-    
-    <form action="{% url 'accounts:register' %}" method="POST">
+
+    <form action="{% url 'accounts:register' %}" method="POST" >
         {% csrf_token %}
         {% bootstrap_form form %}
         <!-- {{form.as_div}} -->
-        {% bootstrap_button button_type="submit" content="Register" %}
-        <!-- <button name="submit">Register</button> -->
+       <!-- {% bootstrap_button button_type="submit" content="Register" class="btn-danger" %}-->
+        <button name="submit" class="btn btn-secondary btn-md">Register</button>
     </form>
 
 {% endblock content %}

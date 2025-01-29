@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Learning Log</title>
+  <title>Digi Diary</title>
 
   {% load django_bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+  {% load static %}
 
+  <!-- JS scripts to render the ckeditor -->
+  <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+  <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-md mb-4 border bg-success" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md mb-4 border bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-          Learning Log</a>
+      <a class="navbar-brand" href="{% url 'digi_diaries:index' %}">
+          Digi Diary</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -25,9 +30,18 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'learning_logs:topics' %}">
+            <a class="nav-link link-light" href="{% url 'digi_diaries:topics' %}">
               Topics</a></li>
-        </ul> <!-- End of links on left side of navbar -->
+        </ul>
+
+        <!--Search form only for the Topics page-->
+        {% if request.resolver_match.url_name == "topics"  %}
+        <form class="d-flex" action="{% url 'digi_diaries:topics' %}" method="GET" id="searchForm">
+          <input class="form-control me-2" type="search" name="q" placeholder="Search topics.." aria-label="Search" value="{{ query|default:'' }}" id="searchInput">
+          <button class="btn btn-secondary" type="submit">Search</button>
+        {% endif %}
+        </form>
+        <!-- End of links on left side of navbar -->
 
         <!-- Account-related links -->
         <ul class="navbar-nav ms-auto mb-2 mb-md-0">
@@ -38,19 +52,19 @@
                 </span></li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link link-dark" href="{% url 'accounts:register' %}">
+              <a class="nav-link link-light" href="{% url 'accounts:register' %}">
                   Register</a></li>
             <li class="nav-item">
-              <a class="nav-link link-dark" href="{% url 'accounts:login' %}">
+              <a class="nav-link link-light" href="{% url 'accounts:login' %}">
                   Log in</a></li>
           {% endif %}
 
         </ul> <!-- End of account-related links -->
 
         {% if user.is_authenticated %}
-          <form action="{% url 'accounts:logout' %}" method='post'>
+          <form action="{% url 'accounts:logout' %}" method='POST'>
             {% csrf_token %}
-            <button name='submit' class='btn btn-outline-transparent btn-sm btn-danger'>
+            <button name='submit' class='btn btn-outline-transparent btn-sm btn-secondary'>
               Log out</button>
           </form>
         {% endif %}
@@ -70,6 +84,20 @@
       {% block content %}
       {% endblock content %}
     </div>
+
+    <!--Javascript to run the reloads dynamically based on a timer-->
+    <script>
+      let debounceTimeout;
+      document.getElementById("searchInput").addEventListener("input", function() {
+        // Clear the existing timeout to reset the debounce timer
+        clearTimeout(debounceTimeout);
+    
+        // Set a new timeout to delay form submission
+        debounceTimeout = setTimeout(function() {
+          document.getElementById("searchForm").submit();
+        }, 500); // 500 milliseconds delay
+      });
+    </script>
   </main>
 </body>
 </html>
