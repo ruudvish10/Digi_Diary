@@ -14,21 +14,22 @@
 {% block content %}
 <form method="POST" id="delete-form" action="{% url 'digi_diaries:delete_topic' %}">
     {% csrf_token %}
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
             <tr class="d-flex align-items-center">
-                <th style="width: 9%;">Select</th>
+                <th style="width: auto;">Select</th>
+                <th style="width: 2%;"></th>
                 <th>Topic</th>
             </tr>
         </thead>
         <tbody>
             {% for topic in topics %}
-            <tr class="d-flex align-items-center">
+            <tr class="d-flex align-items-center mb-2 px-2">
                 <td class="d-flex align-items-center" style="width: 5%;">
                     <input type="checkbox" name="selected_topics" value="{{ topic.id }}">
                 </td>
                 <td>
-                  <a href="{% url 'digi_diaries:sub_topics' topic.id %}" style="text-decoration: none;" class="text-dark">{{ topic.content|safe }}
+                  <a href="{% url 'digi_diaries:sub_topics' topic.id %}" style="text-decoration: none;" class="text-dark">{{ topic.title }}
                 </td>
             </tr>
             {% endfor %}

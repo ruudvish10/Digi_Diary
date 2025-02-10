@@ -1,0 +1,39 @@
+{% extends "digi_diaries/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h1>Edit entry</h1>
+{% endblock page_header %}
+    
+{% block content %}
+   <div class="card mb-3">
+        <div>
+            <!-- Editable Title Field -->
+            <form action="{% url 'digi_diaries:edit_entries' sub_topic.id entry.id %}" method="POST">
+                {% csrf_token %}
+                <!-- Render the title field manually for customization -->
+                <div class="d-flex justify-content-between align-items-center">
+                <input type="text" name="title" id="id_title" value="{{ entry.title }}" class="form-control fw-semibold" required style="max-width: 500px; background-color:rgb(222, 224, 228); color:rgb(10, 9, 9); border: 2px solid #495057;" placeholder= "Edit title here..">
+                <!--<a href="{% url 'digi_diaries:sub_topic_entries' topic.id sub_topic.id %}" style="text-decoration: none;" class="text-dark">{{ entry|safe }}
+                </a>-->
+                <span class="fw-semibold">Last modified: {{ entry.last_modified|date:'M d, Y H:i' }}</span> <!- - span used for inline html styling without disrupting other inline elements - ->
+            </div>
+                {% bootstrap_form form exclude="title"%}
+                <button name="submit" class="btn btn-secondary btn-md mb-2">Save changes</button>
+            </form>   
+        </div>
+        
+    </div>
+    <!--<form action="{% url 'digi_diaries:sub_topic_entries' topic.id sub_topic.id %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form exclude="title"%}
+        <button name="submit" class="btn btn-secondary btn-md mb-2">Save changes</button>
+    </form>-->
+{% endblock content %}
+
+
+
+
+
+
+    

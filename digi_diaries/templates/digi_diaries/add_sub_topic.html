@@ -7,7 +7,7 @@
     
 {% block content %}
 
-    <p><a href="{% url 'digi_diaries:sub_topics' topic.id %}" style="text-decoration: none;" class="text-dark">{{topic|safe}}</a></p>
+    <p><a href="{% url 'digi_diaries:sub_topics' topic.id %}" style="text-decoration: underline;" class="text-dark fw-semibold">{{topic.title}}</a></p>
     <form action="{% url 'digi_diaries:add_sub_topic' topic.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}

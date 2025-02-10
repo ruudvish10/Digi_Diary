@@ -1,0 +1,19 @@
+{% extends "digi_diaries/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h1>Add a new entry</h1>
+{% endblock page_header %}
+    
+{% block content %}
+
+    <form action="{% url 'digi_diaries:add_entries' sub_topic.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <!--{% bootstrap_button button_type="submit" content="Add sub topic" %}-->
+        <button name="submit" class="btn btn-secondary btn-md mb-2">Add entry</button>
+
+    </form>
+
+{% endblock content %}
+

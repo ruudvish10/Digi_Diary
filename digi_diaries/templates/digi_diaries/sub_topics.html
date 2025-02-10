@@ -1,8 +1,8 @@
 
 {% extends 'digi_diaries/base.html' %}
 {% block page_header %}
-<div class="d-flex justify-content-between align-items-center">
-  <h1>{{ topic.content|safe }}</h1>
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <a href="{% url 'digi_diaries:topics' %}" style="text-decoration: none;" class="text-dark"><h1>{{ topic.title }}</h1></a>
   <div class="d-flex gap-3">
     <a href="{% url 'digi_diaries:add_sub_topic' topic.id %}" class="btn btn-outline-secondary btn-sm">Add Sub Topic</a>
     <button type="button" id="edit-button" class="btn btn-outline-secondary btn-sm" style="text-decoration: none;">Edit Sub Topic</button>
@@ -17,19 +17,20 @@
   <table class="table">
     <thead>
       <tr class="d-flex align-items-center">
-        <th style="width: 9%;">Select</th>
-        <th>Sub Topic</th>
+        <th style="width: auto;">Select</th>
+        <th style="width: 1%;"></th>
+        <th>Sub-Topic</th>
       </tr>
     </thead>
     <tbody>
       
-      {% for entry in entries  %}
-        <tr class="d-flex align-items-center">
+      {% for subtopic in sub_topic  %}
+        <tr class="d-flex align-items-center mb-2 px-2">
           <td class="d-flex align-items-center" style="width: 5%;">
-            <input type="checkbox" name="selected_entries" value="{{ entry.id }}">
+            <input type="checkbox" name="selected_subtopics" value="{{ subtopic.id }}">
           </td>
           <td>
-            <a href="{% url 'digi_diaries:edit_sub_topic' entry.id %}" style="text-decoration: none;" class="text-dark">{{ entry.content|safe }}</a>
+            <a href="{% url 'digi_diaries:sub_topic_entries' topic.id subtopic.id %}" style="text-decoration: none;" class="text-dark">{{ subtopic.title }}</a>
           </td>
         </tr>   
         {% empty %}
@@ -46,7 +47,7 @@
       const deleteButton = document.getElementById("delete-button");
 
       deleteButton.addEventListener("click", function () {
-          const checkboxes = document.querySelectorAll('input[name="selected_entries"]:checked');
+          const checkboxes = document.querySelectorAll('input[name="selected_subtopics"]:checked');
           if (checkboxes.length > 0) {
               const confirmDelete = confirm("Are you sure you want to delete the selected sub topics?");
               if (confirmDelete) {
@@ -63,7 +64,7 @@
       const editButton = document.getElementById("edit-button");
 
       editButton.addEventListener("click", function () {
-          const checkboxes = document.querySelectorAll('input[name="selected_entries"]:checked');
+          const checkboxes = document.querySelectorAll('input[name="selected_subtopics"]:checked');
           if (checkboxes.length === 1) {
               const topicId = checkboxes[0].value;
               const editUrl = "{% url 'digi_diaries:edit_sub_topic' 0 %}".replace("0", topicId);

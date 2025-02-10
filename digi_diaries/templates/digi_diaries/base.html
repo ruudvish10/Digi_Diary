@@ -35,9 +35,18 @@
         </ul>
 
         <!--Search form only for the Topics page-->
-        {% if request.resolver_match.url_name == "topics"  %}
-        <form class="d-flex" action="{% url 'digi_diaries:topics' %}" method="GET" id="searchForm">
-          <input class="form-control me-2" type="search" name="q" placeholder="Search topics.." aria-label="Search" value="{{ query|default:'' }}" id="searchInput">
+       {% if request.resolver_match.url_name in "topics sub_topics sub_topic_entries" %}
+        <form class="d-flex" 
+          action="{% if request.resolver_match.url_name == 'topics' %}
+                      {% url 'digi_diaries:topics' %}
+          {% elif request.resolver_match.url_name == 'sub_topics' %}
+            {% url 'digi_diaries:sub_topics' topic.id %}
+          {% elif request.resolver_match.url_name == 'sub_topic_entries' %}
+            {% url 'digi_diaries:sub_topic_entries' topic.id sub_topic.id %}
+          {% endif %}"
+
+          method="GET" id="searchForm">
+          <input class="form-control me-2 bg-primary bg-opacity-50" type="search" name="q" placeholder="Search content.." aria-label="Search" value="{{ query|default:'' }}" id="searchInput">
           <button class="btn btn-secondary" type="submit">Search</button>
         {% endif %}
         </form>
