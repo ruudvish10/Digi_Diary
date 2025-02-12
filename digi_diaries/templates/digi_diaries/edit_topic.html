@@ -1,0 +1,30 @@
+{% extends "digi_diaries/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h1>Edit topic</h1>
+{% endblock page_header %}
+    
+{% block content %}
+
+    <div class="card mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3"> 
+            <a href="{% url 'digi_diaries:topics' %}" style="text-decoration: underline;" class="text-dark fw-semibold">{{topic.title}}</a>
+            <span class="fw-semibold">Last modified: {{ topic.last_modified|date:'M d, Y H:i' }}</span>
+        </div>
+        <form action="{% url 'digi_diaries:edit_topic' topic.id %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+        <!-- {% bootstrap_button button_type="submit" content="Save changes" %}-->
+            <button name="submit" class="btn btn-secondary btn-md mb-2">Save changes</button>
+        </form>
+    </div>
+    
+{% endblock content %}
+
+
+
+
+
+
+    

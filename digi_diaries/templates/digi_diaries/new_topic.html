@@ -1,4 +1,4 @@
-{% extends "learning_logs/base.html" %}
+{% extends "digi_diaries/base.html" %}
 {% load django_bootstrap5 %}
 
 {% block page_header %}
@@ -7,10 +7,11 @@
     
 {% block content %}
 
-    <form action="{% url 'learning_logs:new_topic' %}" method="POST">
+    <form action="{% url 'digi_diaries:new_topic' %}" method="POST">
         {% csrf_token %}           {% comment %}Protects forms from cross site request forgeries{% endcomment %}
         {% bootstrap_form form %}
-        {% bootstrap_button button_type="submit" content="Add topic" %}      
+       <!-- {% bootstrap_button button_type="submit" content="Add topic" %}-->
+       <button name="submit" class="btn btn-secondary btn-md">Add topic</button>
     </form>
 
 {% endblock content %}

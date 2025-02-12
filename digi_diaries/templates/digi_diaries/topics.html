@@ -1,20 +1,78 @@
-{% extends "learning_logs/base.html" %}
+{% extends "digi_diaries/base.html" %}
 {% block page_header %}
+<div class="d-flex justify-content-between align-items-center">
   <h1>Topics</h1>
+  <div class="d-flex gap-3">
+    <a href="{% url 'digi_diaries:new_topic' %}" class="btn btn-outline-secondary btn-sm">Add Topic</a>
+    <button type="button" id="edit-button" class="btn btn-outline-secondary btn-sm" style="text-decoration: none;">Edit Topic</button>
+    <button type="button" id="delete-button" class="btn btn-outline-secondary btn-sm">Delete Topic</button>
+  </div>
+</div>
 {% endblock page_header %}
 
+
 {% block content %}
+<form method="POST" id="delete-form" action="{% url 'digi_diaries:delete_topic' %}">
+    {% csrf_token %}
+    <table class="table table-responsive">
+        <thead>
+            <tr class="d-flex align-items-center">
+                <th style="width: auto;">Select</th>
+                <th style="width: 2%;"></th>
+                <th>Topic</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+            <tr class="d-flex align-items-center mb-2 px-2">
+                <td class="d-flex align-items-center" style="width: 5%;">
+                    <input type="checkbox" name="selected_topics" value="{{ topic.id }}">
+                </td>
+                <td>
+                  <a href="{% url 'digi_diaries:sub_topics' topic.id %}" style="text-decoration: none;" class="text-dark">{{ topic.title }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+</form>
 
-  <ul class="list-group border-bottom pb-2 mb-4">
-    {% for topic in topics %}
-      <li class="list-group-item border-1">
-        <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic.text }}</a>
-      </li>
-    {% empty %}
-      <li class="list-group-item border-0">No topics have been added yet.</li>
-    {% endfor %}
-  </ul>
 
-  <a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+<script>
+    // JavaScript for handling delete action (delete topic)
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteButton = document.getElementById("delete-button");
+
+        deleteButton.addEventListener("click", function () {
+            const checkboxes = document.querySelectorAll('input[name="selected_topics"]:checked');
+            if (checkboxes.length > 0) {
+                const confirmDelete = confirm("Are you sure you want to delete the selected topics?");
+                if (confirmDelete) {
+                    document.getElementById("delete-form").submit();
+                }
+            } else {
+                alert("Please select at least one topic to delete.");
+            }
+        });
+    });
+
+    // JavaScript for handling edit action (edit topic)
+    document.addEventListener("DOMContentLoaded", function () {
+        const editButton = document.getElementById("edit-button");
+
+        editButton.addEventListener("click", function () {
+            const checkboxes = document.querySelectorAll('input[name="selected_topics"]:checked');
+            if (checkboxes.length === 1) {
+                const topicId = checkboxes[0].value;
+                const editUrl = "{% url 'digi_diaries:edit_topic' 0 %}".replace("0", topicId);
+                window.location.href = editUrl;
+            } else if (checkboxes.length === 0) {
+                alert("Please select one topic to edit.");
+            } else {
+                alert("You can only edit one topic at a time. Please select only one.");
+            }
+        });
+    });
+</script>
 
 {% endblock content %}

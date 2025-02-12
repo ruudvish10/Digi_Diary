@@ -1,2 +1,2 @@
-# Learning_Log
-A web app to track your learning
+# Digi_Diary
+Secure your thought
