@@ -1,8 +1,8 @@
 # Explicitly set language classifications
 *.py linguist-language=Python
 templates/**/*.html linguist-language=HTML
-static/css/**/*.css linguist-language=CSS
-static/js/**/*.js linguist-language=JavaScript
+staticfiles/css/**/*.css linguist-language=CSS
+staticfiles/js/**/*.js linguist-language=JavaScript
 
 # Ensure CSS & JS are counted (undo any past exclusions)
 static/css/**/*.css linguist-detectable=true
@@ -10,7 +10,7 @@ static/js/**/*.js linguist-detectable=true
 
 # Ignore only large third-party/vendor files
 node_modules/**/* linguist-vendored
-#staticfiles/**/* linguist-vendored
+staticfiles/**/* linguist-vendored
 static/js/vendor/**/* linguist-vendored
 static/js/libs/**/* linguist-vendored
 static/**/*.min.js linguist-vendored
