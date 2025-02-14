@@ -4,9 +4,13 @@ templates/**/*.html linguist-language=HTML
 static/css/**/*.css linguist-language=CSS
 static/js/**/*.js linguist-language=JavaScript
 
-# Ignore third-party JavaScript files
+# Ignore third-party files
 node_modules/**/* linguist-vendored
-staticfiles/**/* linguist-vendored  # Ignore CKEditor & other static assets
+staticfiles/**/* linguist-vendored  # Ignore CKEditor & Django static files
 static/js/vendor/**/*.js linguist-vendored
 static/js/libs/**/*.js linguist-vendored
 static/**/*.min.js linguist-vendored
+
+# Bring CSS & JS back (Only your custom files)
+!static/css/**/*.css
+!static/js/**/*.js
