@@ -1,6 +1,8 @@
 # Force GitHub to recognize only Python and HTML
 *.py linguist-language=Python
 templates/**/*.html linguist-language=HTML
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS
 
 # Ignore all CSS & JS files from language stats
 static/**/*.css linguist-vendored
