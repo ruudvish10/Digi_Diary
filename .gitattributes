@@ -6,6 +6,7 @@ static/js/**/*.js linguist-language=JavaScript
 
 # Ignore third-party JavaScript files
 node_modules/**/* linguist-vendored
+staticfiles/**/* linguist-vendored  # Ignore CKEditor & other static assets
 static/js/vendor/**/*.js linguist-vendored
 static/js/libs/**/*.js linguist-vendored
 static/**/*.min.js linguist-vendored
