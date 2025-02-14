@@ -1,1 +1,17 @@
 
+# Assign correct languages
+*.py linguist-language=Python
+templates/**/*.html linguist-language=HTML
+static/css/**/*.css linguist-language=CSS
+static/js/**/*.js linguist-language=JavaScript
+
+# Ignore third-party & generated files
+node_modules/**/* linguist-vendored
+staticfiles/**/* linguist-vendored  # Ignore CKEditor & Django static files
+static/js/vendor/**/* linguist-vendored
+static/js/libs/**/* linguist-vendored
+static/**/*.min.js linguist-vendored
+
+# Force GitHub to count CSS & JS again
+*.css linguist-vendored=false linguist-language=CSS
+*.js linguist-vendored=false linguist-language=JavaScript
