@@ -15,25 +15,25 @@ This Digital Diary is your private and secure space to capture ideas or thoughts
 
 ## Installation & Setup 🛠️  
 1. Clone the repository:
-   git clone https://github.com/yourusername/Digi_Diary.git
-   cd Digi_Diary
+   - git clone https://github.com/yourusername/Digi_Diary.git
+   - cd Digi_Diary
 
 2. Create and Activate a Virtual Environment:
-    python -m venv venv     
-    On Windows: venv\Scripts\activate
+   - python -m venv venv     
+   - On Windows: venv\Scripts\activate
 
 3. Install Dependencies:
-    pip install -r requirements.txt  (Ensure this file is updated with all packages)
+    - pip install -r requirements.txt  (Ensure this file is updated with all packages)
 
 4. Configure the Database:
     After changes to the db, run the following: 
-    python manage.py makemigrations 
-    python manage.py migrate 
+    - python manage.py makemigrations 
+    - python manage.py migrate 
 
 5. Start the Development Server:
     To start the server locally, run:
-    python manage.py runserver
-    Visit http://127.0.0.1:8000/ in your browser to access Digi_Diary
+    - python manage.py runserver
+    - Visit http://127.0.0.1:8000/ in your browser to access Digi_Diary
 
 Usage 📝
 - Register and log in to start using Digi_Diary
