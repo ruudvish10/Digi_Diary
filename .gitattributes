@@ -2,9 +2,10 @@
 *.py linguist-language=Python
 templates/**/*.html linguist-language=HTML
 static/css/**/*.css linguist-language=CSS
+static/js/**/*.js linguist-language=JavaScript
 
-# Ignore ALL JavaScript by default
-*.js linguist-vendored
-
-# Only count your own JavaScript files
-static/js/custom/**/*.js linguist-language=JavaScript
+# Ignore third-party JavaScript files
+node_modules/**/* linguist-vendored
+static/js/vendor/**/*.js linguist-vendored
+static/js/libs/**/*.js linguist-vendored
+static/**/*.min.js linguist-vendored
