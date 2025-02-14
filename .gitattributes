@@ -11,6 +11,6 @@ static/js/vendor/**/*.js linguist-vendored
 static/js/libs/**/*.js linguist-vendored
 static/**/*.min.js linguist-vendored
 
-# Bring CSS & JS back (Only your custom files)
-!static/css/**/*.css
-!static/js/**/*.js
+# Force GitHub to recognize your CSS & JS files
+static/css/**/*.css linguist-vendored=false
+static/js/**/*.js linguist-vendored=false
