@@ -1,4 +1,4 @@
-# Digi_Diary - Secure your thought 📖
+# Digi_Diary - Secure Your Thought 📖
 
 This Digital Diary is your private and secure space to capture ideas or thoughts on the go, as they occur. Never miss anything key, revise and revisit as you like. Digi_Diary is a secure, user-friendly Django web application that allows users to create, manage, and organize personal notes with a structured hierarchy of topics, subtopics, and rich-text entries—all while ensuring data privacy through user authentication
 
