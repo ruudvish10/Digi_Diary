@@ -1,12 +1,1 @@
-# Assign correct languages
-*.py linguist-language=Python
-templates/**/*.html linguist-language=HTML
-static/css/**/*.css linguist-language=CSS
-static/js/**/*.js linguist-language=JavaScript
 
-# Ignore only third-party & compiled files
-node_modules/**/* linguist-vendored
-staticfiles/**/* linguist-vendored  # Ignore CKEditor & Django static files
-static/js/vendor/**/* linguist-vendored
-static/js/libs/**/* linguist-vendored
-static/**/*.min.js linguist-vendored
