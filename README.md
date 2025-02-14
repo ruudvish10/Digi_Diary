@@ -5,7 +5,7 @@ This Digital Diary is your private and secure space to capture ideas or thoughts
 ## Features 🌟
 - Organize your thoughts and ideas with topics, subtopics, and rich-text entries
 - Search functionality to easily find your information at all levels of hierarchy  
-- Cascade delete: Removing a topic automatically deletes its subtopics and entries  
+- Cascade Delete: Removing a topic automatically deletes its subtopics and entries  
 - Responsive UI built with Bootstrap for a seamless experience
 
 ## Security & User Authentication 🔐
