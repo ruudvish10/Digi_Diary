@@ -1,4 +1,8 @@
 *.py linguist-language=Python
-*.html linguist-language=HTML
-*.css linguist-language=CSS
-*.js linguist-language=JavaScript
+templates/**/*.html linguist-language=HTML
+static/css/**/*.css linguist-language=CSS
+static/js/**/*.js linguist-language=JavaScript
+
+static/**/*.js linguist-vendored
+node_modules/**/* linguist-vendored
+*.min.js linguist-vendored
