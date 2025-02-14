@@ -10,7 +10,7 @@ static/js/**/*.js linguist-detectable=true
 
 # Ignore only large third-party/vendor files
 node_modules/**/* linguist-vendored
-staticfiles/**/* linguist-vendored
+#staticfiles/**/* linguist-vendored
 static/js/vendor/**/* linguist-vendored
 static/js/libs/**/* linguist-vendored
 static/**/*.min.js linguist-vendored
