@@ -1,0 +1,12 @@
+# Assign correct languages
+*.py linguist-language=Python
+templates/**/*.html linguist-language=HTML
+static/css/**/*.css linguist-language=CSS
+static/js/**/*.js linguist-language=JavaScript
+
+# Ignore third-party JavaScript
+static/**/*.js linguist-vendored
+node_modules/**/* linguist-vendored
+*.min.js linguist-vendored
+**/vendor/**/*.js linguist-vendored
+**/libs/**/*.js linguist-vendored
