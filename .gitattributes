@@ -1,16 +1,13 @@
-# Explicitly classify languages
+# Explicitly set language classifications
 *.py linguist-language=Python
 templates/**/*.html linguist-language=HTML
-static/**/*.css linguist-language=CSS
-static/**/*.js linguist-language=JavaScript
+static/css/**/*.css linguist-language=CSS
+static/js/**/*.js linguist-language=JavaScript
 
-# Ensure CSS & JS files inside 'staticfiles/admin' and 'staticfiles/ckeditor' are counted
-staticfiles/admin/**/*.css linguist-detectable=true
-staticfiles/admin/**/*.js linguist-detectable=true
-staticfiles/ckeditor/**/*.css linguist-detectable=true
-staticfiles/ckeditor/**/*.js linguist-detectable=true
+# Ignore third-party files (so they don't dominate stats)
+staticfiles/admin/**/* linguist-vendored
+staticfiles/ckeditor/**/* linguist-vendored
 
-# Ignore unnecessary third-party/vendor files
-node_modules/**/* linguist-vendored
-staticfiles/vendor/**/* linguist-vendored
-static/**/*.min.js linguist-vendored
+# Ensure some CSS & JS are counted (but not too much)
+static/css/custom_style.css linguist-detectable=true
+static/js/custom_script.js linguist-detectable=true
