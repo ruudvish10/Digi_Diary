@@ -4,13 +4,13 @@ templates/**/*.html linguist-language=HTML
 static/css/**/*.css linguist-language=CSS
 static/js/**/*.js linguist-language=JavaScript
 
-# Ignore only third-party/vendor & compiled files
+# Ignore third-party/vendor & compiled files
 node_modules/**/* linguist-vendored
 staticfiles/**/* linguist-vendored  # Ignore CKEditor & Django static files
 static/js/vendor/**/* linguist-vendored
 static/js/libs/**/* linguist-vendored
 static/**/*.min.js linguist-vendored
 
-# Force GitHub to count only your custom CSS & JS
-!static/css/**/*.css
-!static/js/**/*.js
+# Force GitHub to count only YOUR JS & CSS
+!static/css/*.css
+!static/js/*.js
