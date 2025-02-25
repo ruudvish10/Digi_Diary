@@ -11,8 +11,9 @@
         {% csrf_token %}
         {% bootstrap_form form %}
        <!-- {% bootstrap_button button_type="submit" content="Log in" %} -->
-       <button name="submit" class="btn btn-secondary btn-md">Log in</button>
+       <button name="submit" class="btn btn-secondary btn-md mb-3">Log in</button>
     </form>
+    <a href="{% url 'accounts:register' %}" method="POST" class="text-dark" style="text-decoration: none;">Don't have an account? &nbsp;<u>Register<u></a>
     
 {% endblock content %}
  
